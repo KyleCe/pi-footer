@@ -6,10 +6,12 @@ import type {
   PresetDef,
   StatusLinePreset,
   StatusLineSegmentId,
+  StatusLineSeparatorStyle,
 } from "./types.ts";
 
 export interface FooterConfig {
   preset: StatusLinePreset;
+  separator?: StatusLineSeparatorStyle;
   customItems: CustomStatusItem[];
   segments?: StatusLineSegmentId[];
 }
@@ -39,6 +41,10 @@ const BUILTIN_SEGMENT_IDS: readonly BuiltinStatusLineSegmentId[] = [
 ];
 
 const BUILTIN_SEGMENT_ID_SET = new Set<string>(BUILTIN_SEGMENT_IDS);
+const SEPARATOR_STYLES = new Set<StatusLineSeparatorStyle>([
+  "powerline", "powerline-thin", "slash", "pipe", "block",
+  "none", "ascii", "dot", "chevron", "star",
+]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -136,6 +142,9 @@ export function parseFooterConfig(value: unknown, presets: readonly StatusLinePr
 
   return {
     preset: normalizePreset(value.preset, presets) ?? defaultConfig.preset,
+    separator: typeof value.separator === "string" && SEPARATOR_STYLES.has(value.separator as StatusLineSeparatorStyle)
+      ? value.separator as StatusLineSeparatorStyle
+      : undefined,
     customItems: normalizeCustomItems(value.customItems),
     segments: normalizeSegmentList(value.segments),
   };

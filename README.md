@@ -73,6 +73,21 @@ You can switch presets inside pi with:
 
 Running `/footer` with no arguments toggles the footer on/off for the current session.
 
+## Separator
+
+Set `footer.separator` to override the preset's separator without changing its segments, colors, or display options:
+
+```json
+{
+  "footer": {
+    "preset": "default",
+    "separator": "pipe"
+  }
+}
+```
+
+Available styles: `powerline`, `powerline-thin`, `slash`, `pipe`, `block`, `none`, `ascii`, `dot`, `chevron`, `star`. If omitted or invalid, the preset's separator is used. Powerline styles fall back to ASCII characters when Nerd Font support is not detected.
+
 ## Segment order
 
 Use `footer.segments` to control the exact segment order.

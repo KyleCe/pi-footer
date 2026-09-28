@@ -555,10 +555,11 @@ export default function footerExtension(pi: ExtensionAPI) {
     }
 
     const presetDef = getPreset(config.preset);
+    const layoutPreset = config.separator ? { ...presetDef, separator: config.separator } : presetDef;
     const segmentCtx = buildSegmentContext(currentCtx, theme);
 
     lastLayoutWidth = width;
-    lastLayoutResult = computeResponsiveLayout(segmentCtx, presetDef, width, config.customItems);
+    lastLayoutResult = computeResponsiveLayout(segmentCtx, layoutPreset, width, config.customItems);
     lastLayoutTimestamp = now;
     layoutDirty = false;
     forceNextLayoutRecompute = false;
