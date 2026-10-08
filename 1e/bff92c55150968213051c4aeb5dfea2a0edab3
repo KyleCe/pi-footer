@@ -1,0 +1,19 @@
+icons.ts
+  s_6e92ba3cb08a94::t_79e3e35fce17f5 159-166,168-183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "1ebff92c55150968213051c4aeb5dfea2a0edab3",
+  "prompts": {},
+  "sessions": {
+    "s_6e92ba3cb08a94": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a11ac4-f8c7-7459-b277-d93cd64dda51",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "chengong.168 <chengong.168@jd.com>"
+    }
+  }
+}
