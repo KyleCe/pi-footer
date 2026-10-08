@@ -51,7 +51,10 @@ const modelSegment: StatusLineSegment = {
       modelName = modelName.slice(7);
     }
 
-    let content = withIcon(icons.model, modelName);
+    const modelNameWithProvider = ctx.model?.provider
+      ? `${modelName}${SEP_DOT}${ctx.model.provider}`
+      : modelName;
+    let content = withIcon(icons.model, modelNameWithProvider);
 
     if (opts.showThinkingLevel !== false && ctx.model?.reasoning) {
       const level = ctx.thinkingLevel || "off";
