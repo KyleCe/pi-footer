@@ -156,15 +156,31 @@ export const ASCII_SEPARATORS: SeparatorChars = {
   dot: ".",
 };
 
-// Detect Nerd Font support from the terminal environment
-export function hasNerdFonts(): boolean {
-  // Check for Ghostty (survives into tmux via GHOSTTY_RESOURCES_DIR)
-  if (process.env.GHOSTTY_RESOURCES_DIR) return true;
-  
-  // Check common terminals known to support Nerd Fonts (case-insensitive)
+export type FontMode = "auto" | "nerd" | "ascii";
+
+const NERD_TERM_MARKERS = [
+  "iterm", "wezterm", "kitty", "ghostty", "alacritty",
+  "otty", "rio", "warp", "tabby", "contour",
+];
+
+function detectNerdFonts(): boolean {
   const term = (process.env.TERM_PROGRAM || "").toLowerCase();
-  const nerdTerms = ["iterm", "wezterm", "kitty", "ghostty", "alacritty"];
-  return nerdTerms.some(t => term.includes(t));
+  if (process.env.GHOSTTY_RESOURCES_DIR) return true;
+  return NERD_TERM_MARKERS.some((marker) => term.includes(marker));
+}
+
+// PI_FOOTER_FONT=nerd|ascii overrides terminal auto-detection.
+export function getFontMode(): FontMode {
+  const override = (process.env.PI_FOOTER_FONT ?? "").trim().toLowerCase();
+  if (override === "nerd" || override === "ascii") {
+    return override;
+  }
+
+  return detectNerdFonts() ? "nerd" : "ascii";
+}
+
+export function hasNerdFonts(): boolean {
+  return getFontMode() === "nerd";
 }
 
 export function getIcons(): IconSet {
