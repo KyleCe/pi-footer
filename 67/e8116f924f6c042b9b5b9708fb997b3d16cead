@@ -1,0 +1,21 @@
+types.ts
+  s_6e92ba3cb08a94::t_ffc8ae6b8a0ac8 139
+segments.ts
+  s_6e92ba3cb08a94::t_5be3b5991a5b78 54-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "67e8116f924f6c042b9b5b9708fb997b3d16cead",
+  "prompts": {},
+  "sessions": {
+    "s_6e92ba3cb08a94": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a11ac4-f8c7-7459-b277-d93cd64dda51",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "chengong.168 <chengong.168@jd.com>"
+    }
+  }
+}
